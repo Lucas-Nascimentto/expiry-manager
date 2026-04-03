@@ -1,0 +1,163 @@
+========================================
+PROJECT: EXPIRY MANAGER
+========================================
+
+OBJETIVO:
+Sistema de controle de validade de produtos com alertas, análise de perdas e suporte a leitura de código de barras.
+
+========================================
+REQUISITOS FUNCIONAIS
+========================================
+
+1. AUTENTICAÇÃO
+- Login com usuário e senha
+- Senha armazenada com hash (segurança)
+- (Futuro) Cadastro de usuários
+
+----------------------------------------
+
+2. CADASTRO DE PRODUTOS
+
+2.1 Cadastro Manual:
+- Nome do produto
+- Categoria
+
+2.2 Cadastro via Código de Barras:
+- Leitura via câmera (frontend)
+- Envio do código (EAN) para backend
+- Busca de dados em API externa
+
+----------------------------------------
+
+3. INTEGRAÇÃO COM API EXTERNA
+- Buscar informações do produto via código de barras
+- Retornar:
+  - Nome
+  - Marca
+  - Categoria (se disponível)
+
+----------------------------------------
+
+4. BANCO DE DADOS
+
+Produtos:
+- id
+- nome
+- categoria
+- código de barras
+
+Lotes:
+- id
+- product_id (FK)
+- quantidade
+- data de validade
+- data de criação
+
+----------------------------------------
+
+5. ALERTAS
+
+5.1 No sistema:
+- Exibir produtos vencidos
+- Exibir produtos próximos do vencimento (≤ 30 dias)
+
+5.2 WhatsApp:
+- Enviar alerta automático quando faltar 30 dias ou menos
+
+Regra:
+Se (data_validade - hoje) <= 30 dias → ALERTA
+
+----------------------------------------
+
+6. CONTROLE DE LOTES
+- Adicionar lote
+- Listar lotes por produto
+- Remover último lote cadastrado
+
+Regra:
+Remover o lote mais recente do produto
+
+----------------------------------------
+
+7. STATUS DE VALIDADE
+- Vencido
+- Próximo do vencimento
+- OK
+
+----------------------------------------
+
+8. FILTROS
+- Apenas vencidos
+- Apenas próximos
+- Todos
+
+----------------------------------------
+
+9. DASHBOARD
+- Total de produtos
+- Produtos vencidos
+- Produtos próximos
+- Percentual de risco
+
+----------------------------------------
+
+10. HISTÓRICO DE PERDAS
+- Registrar produtos vencidos como perda
+- Armazenar:
+  - produto
+  - quantidade
+  - data
+
+----------------------------------------
+
+11. RANKING
+- Produtos que mais vencem
+- Produtos com maior prejuízo
+
+----------------------------------------
+
+12. SUGESTÕES INTELIGENTES
+Regra:
+Se produto estiver próximo do vencimento → sugerir promoção
+
+----------------------------------------
+
+13. LOG DE AÇÕES (FUTURO)
+- Registrar:
+  - quem criou
+  - quem removeu
+  - quando
+
+========================================
+CLASSIFICAÇÃO DAS FEATURES
+========================================
+
+MVP:
+- Login
+- Cadastro manual de produto
+- Cadastro de lote
+- Listagem
+- Filtro
+- Status de validade
+
+INTERMEDIÁRIO:
+- Código de barras
+- Integração com API
+- Dashboard
+- Remoção de lote
+
+AVANÇADO:
+- WhatsApp
+- Ranking
+- Histórico de perdas
+- Sugestões inteligentes
+
+========================================
+OBSERVAÇÕES
+========================================
+
+- Sistema baseado em controle por lotes
+- Foco em evitar perdas financeiras
+- Projeto com potencial real de uso em pequenos comércios
+
+========================================
