@@ -1,13 +1,33 @@
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+instance/
 venv/
+.venv/
+env/
+ENV/
 
 # Node
 node_modules/
+dist/
+build/
+frontend/node_modules/
+frontend/dist/
 
 # Env
 .env
+.env.*
 
 # OS
 .DS_Store
+
+# Editor
+.idea/
