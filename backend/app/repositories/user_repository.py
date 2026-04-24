@@ -1,11 +1,11 @@
-from ..extensions import db
+from ..extensions import db, bcrypt
 from ..models.user import User
 
 def create_user(data):
     user = User(
         name=data["name"],
         email=data["email"],
-        password=data["password"]
+        password=bcrypt.generate_password_hash(data["password"]).decode("utf-8")
     )
     db.session.add(user)
     db.session.commit()
@@ -24,3 +24,6 @@ def update_user(user, data):
 def delete_user(user):
     db.session.delete(user)
     db.session.commit()
+
+def get_user_by_email(email):
+    return User.query.filter_by(email=email).first()
